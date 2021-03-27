@@ -91,12 +91,16 @@ header{
         font-size: 1.2em;
         font-weight: bold;
     }
+
 section{
     min-height: 80vmin;
     padding: 16px;
     box-sizing: border-box;
     font-family: 'Raleway', sans-serif;
     color: white;
+}
+section h1{
+    font-size: 5rem;
 }
 #la-historia{
     position: relative;
@@ -107,13 +111,13 @@ section{
         font-size: 15vw;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: 900;
+        color: transparent;
+        -webkit-text-stroke: 0.5vw rgba(255, 255, 255, 0.2);
+        text-stroke: 0.5vw rgba(255, 255, 255, 0.2);
         left: 0;
         right: 0;
         top: 0;
         margin: 0;
-        color: transparent;
-        -webkit-text-stroke: 0.5vw rgba(255, 255, 255, 0.5);
-        text-stroke: 0.5vw rgba(255, 255, 255, 0.5);
     }
     #historia{
         padding: 0 !important;
@@ -142,12 +146,13 @@ section{
             border-radius: 15px;
             text-decoration: none;
             cursor: pointer;
+            /* margin: 10vmin; */
         }
         #historia>.carrousel-prev{
-            left: 0;
+            left: 10vmin;
         }
         #historia>.carrousel-next{
-            right: 0;
+            right: 10vmin;
         }
         #historia>div{
             flex-shrink: 0;
