@@ -62,8 +62,8 @@
                 <p>¡Acompáñame y salvemos al mundo! </p>
             </div>
         </div>
-        <a href="" class="carrousel-prev"> &#60; </a>
-        <a href="" class="carrousel-next"> &#62; </a>
+        <button class="carrousel-prev"> &#60; </button>
+        <button class="carrousel-next"> &#62; </button>
     </div>
     <div id="como-jugar">
         <h1>Cómo jugar</h1>
@@ -114,5 +114,10 @@
             </div>
         </div>
     </div>
+
+    <script src="./carrousel.js"></script>
+    <script>
+        let carrousel = new Carrousel(document.querySelector('#historia'))
+    </script>
 </body>
 </html>
