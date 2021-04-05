@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">    
     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     <title>0rb1t</title>
@@ -67,6 +68,13 @@
     <section id="como-jugar">
         <h1>Cómo jugar</h1>
         <p>Ajusta el ángulo y potencia para evitar que la nave se estrelle o pierda.</p>
+
+        <img src="planet.png" id="como-jugar-planeta">
+        <div id="como-jugar-cohete-cont">
+            <img src="rocket.png" id="como-jugar-cohete">
+            <div id="como-jugar-vector"></div>
+        </div>
+
     </section>
     <section id="trailer">
         <h1>Tráiler</h1>
@@ -96,7 +104,7 @@
         <h2>Objetivo</h2>
         <p>El objetivo del proyecto fue desarrollar un videojuego que inspire a las y los jóvenes a estudiar carreras relacionadas con STEM y a desarrollar competencias relacionadas con las mismas.</p>
         <h2>Documentación</h2>
-        <p>Toda la documentación del proyecto se encuentra en &nbsp; <a href="https://github.com/Ax010tl/srsdoc" target="_blank">este repositorio</a>.</p>
+        <p>Toda la documentación del proyecto se encuentra en <a href="https://github.com/Ax010tl/srsdoc" target="_blank">este repositorio</a>.</p>
         <h2>El Equipo</h2>
         <div id="team">
             <div id="member">
@@ -115,6 +123,7 @@
     </section>
 
     <script src="./carrousel.js"></script>
+    <script src="./launch.js"></script>
     <script>
         let carrousel = new Carrousel(document.querySelector('#historia'))
     </script>

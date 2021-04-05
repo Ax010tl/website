@@ -174,14 +174,42 @@ section h1{
 
 #como-jugar{
     background-color: #230A4B;
-    height: 80vmin;
-}
-#como-jugar p {
-    width: minmax(20%, 400px);
-    text-align: center;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    height: 120vh;
 }
+    #como-jugar p {
+        width: minmax(20%, 400px);
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+    #como-jugar-planeta{
+        width: 20vmin;
+        height: 20vmin;
+        margin: 5vmin auto;
+        position: relative;
+        z-index: 3;
+    }
+    #como-jugar-cohete-cont{
+        margin: auto;
+        position: relative;
+    }
+    #como-jugar-cohete{
+        width: 8vmin;
+        height: 8vmin;
+        transform: rotate(90deg);
+        z-index: 2;
+        position: relative;
+    }
+    #como-jugar-vector{
+        width: 200px;
+        height: 5px;
+        background: linear-gradient(90deg, white, transparent);
+        position: absolute;
+        left: 50%;
+        top: calc(50% - 3.9px)
+    }
 
 #juego{
     background-color: #230A4B;
@@ -199,8 +227,7 @@ section h1{
 #proyecto p {
     padding: 0 7vw;
     width: minmax(20%, 400px);
-    display: flex;
-    justify-content: center;
+    font-size: 1.2rem;
 }
 
 #team{
@@ -229,4 +256,27 @@ section h1{
     text-align: center;
     font-weight: 500;
     margin-top: 4vh;
+}
+
+#proyecto a{
+    color: white;
+}
+
+@media screen and (max-width: 800px) {
+
+    #hero{
+        display: none;
+    }
+
+    nav li a{
+        text-decoration: none;
+        color: white;
+        align-self: center;
+        font-size: 0.8em;
+    }
+
+    #indicadores h1{
+        margin: 0;
+        padding: 0;
+    }
 }
