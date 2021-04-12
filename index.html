@@ -77,22 +77,41 @@
     </section>
 
     <section id="instructions">
-        <h2>Obtén puntos extra</h2>
-        <p>Existen 6 objetos que dan puntos extra, cada uno representa una disciplina de STEM:</p>
-        <ul id="powerups">
-            <li> <img src=powerups/bio.png height="25px">  Biología</li>
-            <li> <img src=powerups/phys.png height="25px"> Física</li>
-            <li> <img src=powerups/chem.png height="25px"> Química</li>
-            <li> <img src=powerups/tech.png height="25px"> Tecnología</li>
-            <li> <img src=powerups/eng.png height="25px">  Ingeniería</li>
-            <li> <img src=powerups/math.png height="25px"> Matemáticas</li>
-        </ul>
-
-        <p>Haz que el cohete pase a través de estos para ganar más puntos.</p>
-
-        <div>
+        <div class="como-jugar-powerups">
+            <h2>Obtén puntos extra</h2>
+            <p>Existen 6 objetos que dan puntos extra, cada uno representa una disciplina de STEM:</p>
+            <div id="powerups">
+                <div id="powerup">
+                    <img id="powerup-image" src=powerups/bio.png>
+                    <p id="powerup-label">Biología</p>
+                </div>
+                <div id="powerup">
+                    <img id="powerup-image" src=powerups/phys.png>
+                    <p id="powerup-label">Física</p>
+                </div>
+                <div id="powerup">
+                    <img id="powerup-image" src=powerups/chem.png>
+                    <p id="powerup-label">Química</p>
+                </div>
+                <div id="powerup">
+                    <img id="powerup-image" src=powerups/tech.png>
+                    <p id="powerup-label">Tecnología</p>
+                </div>
+                <div id="powerup">
+                    <img id="powerup-image" src=powerups/eng.png>
+                    <p id="powerup-label">Ingeniería</p>
+                </div>
+                <div id="powerup">
+                    <img id="powerup-image" src=powerups/math.png>
+                    <p id="powerup-label">Matemáticas</p>
+                </div>
+            </div>
+            <p>Haz que el cohete pase a través de estos para ganar más puntos.</p>
+        </div>
+        <div class="como-jugar-obstaculos">
             <h2>Evita los obstáculos</h2>
             <p>¡Cuidado con los asteorides!</p>
+            <img src="Obstacles.gif" id="gif-obstacles">
             <p> Evita que el cohete colisione con los asteroides, estos restan puntos.</p>
         </div>
     </section>
