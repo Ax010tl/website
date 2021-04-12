@@ -14,7 +14,7 @@ html{
 }
 
 h1{
-    font-size: 2rem;
+    font-size: 1.2rem;
     text-align: center;
     font-weight: 600;
     margin: 0.5em;
@@ -211,6 +211,47 @@ section h1{
         top: calc(50% - 3.9px)
     }
 
+#instructions{
+    background-color: #230A4B;
+    display: flex;
+    flex-direction: column;
+    padding: 0px !important;
+}
+
+.como-jugar-obstaculos{
+    margin: 3vh 0;
+}
+
+#powerups{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+#powerup{
+    margin: 4vh 2vw; 
+    text-align: center;
+}
+
+#powerup-image{
+    width: 40px;
+    padding-bottom: 10px;
+}
+
+#instructions p{
+    text-align: center;
+}
+
+#gif-obstacles{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    padding: 0;
+}
+
 #juego{
     background-color: #230A4B;
 }
@@ -224,10 +265,27 @@ section h1{
     background-color: #230A4B;
 }
 
+#proyecto h2{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
 #proyecto p {
     padding: 0 7vw;
     width: minmax(20%, 400px);
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+}
+
+#movimiento-steam #logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    margin-bottom: 4vh;
+}
+
+.proyecto-contenedor{
+    margin:50px 0;
 }
 
 #team{
@@ -248,7 +306,7 @@ section h1{
 }
 
 #member img{
-    height: 80%;
+    height: 60%;
     align-self: center;
 }
 
@@ -261,6 +319,7 @@ section h1{
 #proyecto a{
     color: white;
 }
+
 
 @media screen and (max-width: 800px) {
 
