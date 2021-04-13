@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios</title>
+    <style>
+        form{
+            border: 1px solid; margin: 8px; padding: 8px
+        }
+    </style>
+</head>
+<body>
+    <form action="new" method="POST">
+        <h1>Crear un nuevo usuario</h1>
+
+        Alias
+        <input type="text" name="alias" id="alias">
+        <br>
+
+        Age
+        <input type="number" name="age" id="age">
+        <br>
+
+        State
+        <input type="text" name="state" id="state">
+        <br>
+
+        Gender
+        <input type="text" name="gender" id="gender">
+        <br>
+
+        School Level
+        <input type="text" name="schoolLevel" id="schoolLevel">
+
+        <input type="hidden" name="biology" value="0">
+        <input type="hidden" name="chemistry" value="0">
+        <input type="hidden" name="physics" value="0">
+        <input type="hidden" name="engineering" value="0">
+        <input type="hidden" name="tech" value="0">
+        <input type="hidden" name="math" value="0">
+        <input type="hidden" name="score" value="0">
+
+        <hr>
+        <input type="submit" value="Enviar">
+    </form>
+
+    <form action="modify" method="POST">
+        <h1>Modificar usuario existente</h1>
+        ID
+        <input type="number" name="userID" id="userID">
+        <br>
+        <hr>
+        Alias
+        <input type="text" name="alias" id="alias">
+        <br>
+
+        Age
+        <input type="number" name="age" id="age">
+        <br>
+
+        State
+        <input type="text" name="state" id="state">
+        <br>
+
+        Gender
+        <input type="text" name="gender" id="gender">
+        <br>
+
+        School Level
+        <input type="text" name="schoolLevel" id="schoolLevel">
+        <br>
+        <br>
+        Biology
+        <input type="text" name="biology" value="0">
+        <br>
+        chemistry
+        <input type="text" name="chemistry" value="0">
+        <br>
+        physics
+        <input type="text" name="physics" value="0">
+        <br>
+        engineering
+        <input type="text" name="engineering" value="0">
+        <br>
+        tech
+        <input type="text" name="tech" value="0">
+        <br>
+        math
+        <input type="text" name="math" value="0">
+        <br>
+        score
+        <input type="text" name="score" value="0">
+        <br>
+        <hr>
+        <input type="submit" value="Enviar">
+
+    </form>
+
+    <form action="delete" method="POST">
+        <h1>Eliminar usuario</h1>
+        id
+        <input type="number" name="userID">
+        <input type="checkbox" name="" id="" required> Confirmar
+        <hr>
+        <input type="submit" value="Enviar">
+    </form>
+
+</body>
+</html>
