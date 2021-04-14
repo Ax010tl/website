@@ -17,20 +17,9 @@ connection.connect(error => {
 });
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static('static'));
 
-app.get('/', (req, res)=>{
-    res.end('Hello world! 🍟');
-})
-
-// PÁGINA PARA PROBAR
-app.get('/forms', (req, res)=>{
-    res.sendFile(__dirname+"/forms.html");
-});
-
-app.get('/graphs', (req, res)=>{
-    res.sendFile(__dirname+"/graphs.html");
-})
 
 // CREAR UN NUEVO USUARIO
 app.post('/new', (req, res)=>{
@@ -55,7 +44,7 @@ app.post('/modify', (req, res)=>{
         if(err){
             console.log(err);
             return;
-        }
+        }a
         res.send("Yey! 🙌");
     })
 });

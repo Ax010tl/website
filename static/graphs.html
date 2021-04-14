@@ -12,6 +12,8 @@
             display: flex;
             height: 100vh;
             width: 100vw;
+            /* Para que haga scrolls bonitos :D */
+            scroll-behavior: smooth;
         }
         aside{
             font-family: 'Raleway', sans-serif;
@@ -21,7 +23,7 @@
             box-sizing: border-box;
             position:sticky; 
             overflow-y: auto;
-            background-color: rgba(31,9,71,0.4);
+            background-color: rgba(31,9,71,0.28);
         }
         aside a{
             display: block;
@@ -35,64 +37,131 @@
         }
         main{
             flex: 1;
-            margin: 3vh 5vw; 
             overflow-y: auto;
+            scroll-behavior: smooth;
         }
-        .graph-cont{
+        
+        main section.graph-cont{
             padding: 16px;
+            padding-left: 20px;
             box-sizing: border-box; 
 
         }
-        .graph-cont canvas{
-            width: 100% !important;
-            max-height: 80vh !important;
+            .graph-cont canvas{
+                width: 100% !important;
+                max-height: 70vh !important;
+            }
+
+        #title{
+            display:flex; 
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            text-align: center; 
         }
 
+        #toc-link{
+            padding-left: 60vw; 
+            margin-top: 2vh; 
+        }
+
+        #toc-link a{
+            text-decoration: none;
+            color: black;
+        }
+
+        #toc-link a:hover{
+            text-decoration: underline; 
+        }
+
+        #banner{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            position: absolute;
+            bottom: 30px; 
+            width: 270px; 
+        }
+
+        #graph-wrapper{
+            display: flex; 
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+        }
+
+        h2{
+            padding-left: 15px;
+        }
+
+        canvas{
+            max-width: 40vw; 
+            max-height: 30vh;
+            margin: 0 auto;
+        }
+        canvas.horizontal{
+            max-width: 50vw; 
+            max-height: 30vh; 
+            margin: 0 auto;
+        }
+        
         @media screen and (max-width: 600px) {
             aside{
                 display:none; 
             }
+            canvas{
+                max-width: 70vw; 
+                max-height: 30vh; 
+            }
+            canvas.hotizontal{
+                width: 100%;
+            }
         }
-
     </style>
 </head>
 <body>
     <aside>
         <h2>Tabla de contenidos</h2>
+        <div></div>
+        <img id="banner" src="./graphs/indicadores_banner.png">
     </aside>
-    <main>
-        <h1>Indicadores</h1>
-        <section class="graph-cont"id="subjectinterest">
-            <h2>📚 Interés por area STEM</h2>
-            <canvas id="subjectinterest-grafica"></canvas>
-        </section>
-    
-        <section class="graph-cont"id="schoolLevel_subject">
-            <h2> 🏫 Nivel de escolaridad por interés en área de STEM</h2>
-            <canvas id="schoolLevel_subject-grafica"></canvas>
-        </section>
-
-        <section class="graph-cont" id="gender_view">
-            <h2> ⚖️ Distribución de géneros</h2>
-            <canvas id="gender_view-grafica"></canvas>
-        </section>
+    <main> 
+        <div id="title">
+            <div id="toc-link"><a  href="/index.html"> Regresar </a></div>
+            <h1>Indicadores</h1>
+        </div>
+        <div id="graph-wrapper">
+            <section class="graph-cont"id="subjectinterest">
+                <h2>📚 Interés por área STEM</h2>
+                <canvas id="subjectinterest-grafica"></canvas>
+            </section>
         
-        <section class="graph-cont" id="schoolLevel_view">
-            <h2>🎓 Nivel de escolaridad</h2>
-            <canvas id="schoolLevel_view-grafica"></canvas>
-        </section>
+            <section class="graph-cont"id="schoolLevel_subject">
+                <h2> 🏫 Nivel de escolaridad por interés en área de STEM</h2>
+                <canvas id="schoolLevel_subject-grafica" class="horizontal"></canvas>
+            </section>
 
-        <section class="graph-cont" id="ages_view">
-            <h2>🧮 Distribución de edades</h2>
-            <!-- segmentando cada 5 años -->
-        </section>
+            <section class="graph-cont" id="gender_view">
+                <h2> ⚖️ Distribución de géneros</h2>
+                <canvas id="gender_view-grafica"></canvas>
+            </section>
+            
+            <section class="graph-cont" id="schoolLevel_view">
+                <h2>🎓 Nivel de escolaridad</h2>
+                <canvas id="schoolLevel_view-grafica"></canvas>
+            </section>
 
-        <section class="graph-cont" id="gender_subject">
-            <h2>⚙️ Interés en área de STEM por género</h2>
-            <canvas id="gender_subject-grafica"></canvas>
+            <section class="graph-cont" id="ages_view">
+                <h2>🧮 Distribución de edades</h2>
+                <canvas id="ages_view-grafica"></canvas>
+            </section>
 
-        </section>
+            <section class="graph-cont" id="gender_subject">
+                <h2>⚙️ Interés en área de STEM por género</h2>
+                <canvas id="gender_subject-grafica"></canvas>
+            </section>
 
+        </div>
     </main>
     
 
@@ -105,7 +174,7 @@
                 let link = document.createElement('a');
                 link.href = '#'+element.id;
                 link.innerHTML = element.querySelector('h2').innerText;
-                document.querySelector('aside').append(link)
+                document.querySelector('aside').querySelector('div').append(link)
             })
         }
         getTableOfContents();
@@ -135,6 +204,7 @@
                         yAxisKey: 'Interés'
                     },
                     responsive: true,
+                    maintainAspectRatio: false,
                     plugins: {
                         legend: {
                             display: false,
@@ -158,12 +228,12 @@
                 return grados.indexOf(a.schoolLevel) - grados.indexOf(b.schoolLevel) 
             });
             const data_arreglado = [
-                {label: "Biología", data: [], borderColor:['rgba(27, 193, 161, 0.3)'], backgroundColor: ['rgba(27, 193, 161, 0.5)']},
-                {label: "Química", data: [], borderColor:['rgba(255, 206, 86, 0.3)'], backgroundColor: ['rgba(255, 206, 86, 0.5)']},
-                {label: "Física", data: [], borderColor:['rgba(255, 159, 64, 0.3)'], backgroundColor: ['rgba(255, 159, 64, 0.5)']},
-                {label: "Ingeniería", data: [], borderColor:['rgba(54, 162, 235, 0.3)'], backgroundColor: ['rgba(54, 162, 235, 0.5)']},
-                {label: "Tecnología", data: [], borderColor:['rgba(153, 102, 255, 0.3)'], backgroundColor: ['rgba(153, 102, 255, 0.5)']},
-                {label: "Matemáticas", data: [], borderColor:['rgba(255, 96, 87, 0.3)'], backgroundColor: ['rgba(255, 96, 87, 0.5)']},
+                {label: "Biología", data: [], borderColor:['rgba(27, 193, 161, 0.3)'], backgroundColor: ['rgba(27, 193, 161, 0.5)'], options: {responsive: true,}},
+                {label: "Química", data: [], borderColor:['rgba(255, 206, 86, 0.3)'], backgroundColor: ['rgba(255, 206, 86, 0.5)'], options: {responsive: true,}},
+                {label: "Física", data: [], borderColor:['rgba(255, 159, 64, 0.3)'], backgroundColor: ['rgba(255, 159, 64, 0.5)'], options: {responsive: true,}},
+                {label: "Ingeniería", data: [], borderColor:['rgba(54, 162, 235, 0.3)'], backgroundColor: ['rgba(54, 162, 235, 0.5)'], options: {responsive: true,}},
+                {label: "Tecnología", data: [], borderColor:['rgba(153, 102, 255, 0.3)'], backgroundColor: ['rgba(153, 102, 255, 0.5)'], options: {responsive: true,}},
+                {label: "Matemáticas", data: [], borderColor:['rgba(255, 96, 87, 0.3)'], backgroundColor: ['rgba(255, 96, 87, 0.5)'],options: {responsive: true,}},
             ]; 
             for(let data_row of data_ordenada){
                 let schoolLevel = data_row.schoolLevel;
@@ -231,8 +301,28 @@
         async function obtenerAges_view(){
             const req = await fetch('/views/ages_view');
             const data = await req.json();
+
+            const config = {
+                type: 'polarArea',
+                data: {
+                    labels: data.map(row=>row.Edades), 
+                    datasets: [{
+                        data: data.map(row=>row.Cantidad),
+                        backgroundColor: [
+                            'rgba(27, 193, 161, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(255, 159, 64, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(153, 102, 255, 0.7)',
+                            'rgba(255, 96, 87, 0.7)'
+                        ],
+                    }]
+                }
+            }
             const chart = new Chart(document.getElementById('ages_view-grafica'), config)
         }
+
+
         async function obtenerGender_subject(){
             let materias = ['Biología', 'Química', 'Física', 'Ingeniería', 'Tecnología', 'Matemáticas']
             const req = await fetch('/views/gender_subject');
@@ -269,7 +359,7 @@
         obtenerSchoolLevel_subject();
         obtenerGender_view();
         obtenerSchoolLevel_view();
-        //obtenerAges_view();
+        obtenerAges_view();
         obtenerGender_subject();
     </script>
 

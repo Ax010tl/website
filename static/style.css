@@ -259,6 +259,32 @@ section h1{
 #indicadores {
     padding-left: 10%;
     padding-right: 10%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+}
+
+#indicadores-mensaje{
+    text-align: center;
+    font-size: large;
+}
+
+#indicadores a{
+    margin: 10vh auto; 
+}
+.button {
+    background-color: #f8c433;
+    border: solid black; 
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    font-weight: bold;
+    height: 70px;
+    width: 90px; 
+    cursor: pointer;
+    border-radius: 12px;
 }
 
 #proyecto{
@@ -273,14 +299,14 @@ section h1{
 #proyecto p {
     padding: 0 7vw;
     width: minmax(20%, 400px);
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
 #movimiento-steam #logo{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 30%;
+    width: 20%;
     margin-bottom: 4vh;
 }
 
