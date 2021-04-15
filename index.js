@@ -2,6 +2,9 @@
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
+const cors = require('cors');
+
+const port = 5000;
 
 // Connect to database
 var connection = mysql.createConnection({
@@ -15,8 +18,10 @@ connection.connect(error => {
     if (error) throw error;
     console.log("Conexión exitosa a la base de datos");
 });
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 app.use(express.static('static'));
 
@@ -127,6 +132,30 @@ app.get('/views/gender_subject', (req, res)=>{
     });
 });
 
-app.listen(8000, ()=>{
-    console.log("Hola! Estoy corriendo de mis problemas 🏃‍♀️🏃‍♂️, en el puerto 8000")
-})
+app.post('/api/gamedata', (request, response)=>{
+
+    try{
+        console.log('Request data:', request.body);
+        // Insert data
+        const query = connection.query('insert into users set ?', request.body ,(error, results, fields)=>{
+            // If there are no errors, we send a message back to Unity that the data was inserted correctly.
+            if(error) 
+                console.log(error);
+            else
+                response.json({'message': "Data inserted correctly."})
+        });
+
+        // Log everything in the server console.
+        console.log(query.sql);
+        // connection.end();
+    }
+    catch(error){
+        console.log(error);
+        connection.end();
+        response.json(error);
+    }
+});
+
+app.listen(PORT, ()=>{
+    console.log(`Aplicación escuchando en el puerto ${PORT}`);
+});
