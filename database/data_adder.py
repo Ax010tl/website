@@ -8,10 +8,11 @@ nicks = RandomWords()
 def connectToDB():
     try:
         connection = mysql.connector.connect(
-            user = 'root',
-            password = 'mac_15_db',
+            host = 'klbcedmmqp7w17ik.cbetxkdyhwsb.us-east-1.rds.amazonaws.com	',
+            user = 'itzu2phs59lkql5a',
+            password = 'ixbrxjiq61r2u4xi',
             port = 3306,
-            database = 'skience'
+            database = 'bu6scvlykzf9nj7d'
         )
         print('MySQL Database connection successful')
     except Error as err:

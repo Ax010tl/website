@@ -4,14 +4,14 @@ const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
 
-const port = 5000;
+const PORT = 5000;
 
 // Connect to database
 var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'mac_15_db',
-    database : 'skience'
+    host     : 'klbcedmmqp7w17ik.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    user     : 'itzu2phs59lkql5a',
+    password : 'ixbrxjiq61r2u4xi',
+    database : 'bu6scvlykzf9nj7d'
 });
 
 connection.connect(error => {
@@ -91,7 +91,7 @@ app.get('/user', (req, res)=>{
 });
 
 app.get('/views/subjectinterest', (req, res)=>{
-    connection.query("SELECT * FROM subjectinterest", (err, results, fields)=>{
+    connection.query("SELECT * FROM subjectInterest", (err, results, fields)=>{
         if(err) console.log(err);
         else res.send(results);
     });
