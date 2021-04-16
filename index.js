@@ -46,12 +46,12 @@ app.post('/modify', (req, res)=>{
     const data = req.body;
     let {userID, alias, age, state, gender, schoolLevel, biology, chemistry, physics, engineering, tech, math, score} = data;
 
-    connection.query("UPDATE users ? WHERE userID="+userID, {alias, age, state, gender, schoolLevel, biology, chemistry, physics, engineering, tech, math, score}, 
+    connection.query("UPDATE users SET ? WHERE userID="+userID, {alias, age, state, gender, schoolLevel, biology, chemistry, physics, engineering, tech, math, score}, 
     (err, results, fields)=>{
         if(err){
             console.log(err);
             return;
-        }a
+        }
         res.send("Yey! 🙌");
     })
 });
