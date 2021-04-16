@@ -74,9 +74,10 @@ app.get('/all', (req, res)=>{
     connection.query('SELECT * FROM users', (err, results, fields)=>{
         if(err){
             console.log(err);
+            res.json({error: 'An error occurred'})
             return;
         }
-        res.send(results);
+        res.json(results);
     })
 });
 
