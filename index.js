@@ -6,12 +6,14 @@ const cors = require('cors');
 
 const PORT = 5000;
 
+// mysql://b5d3a39da1737e:f62e1752@us-cdbr-east-03.cleardb.com/heroku_e5db01dce17010c?reconnect=true
+
 // Connect to database
 var connection = mysql.createConnection({
-    host     : 'klbcedmmqp7w17ik.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-    user     : 'itzu2phs59lkql5a',
-    password : 'ixbrxjiq61r2u4xi',
-    database : 'bu6scvlykzf9nj7d'
+    host     : 'us-cdbr-east-03.cleardb.com',
+    user     : 'b5d3a39da1737e',
+    password : 'f62e1752',
+    database : 'heroku_e5db01dce17010c'
 });
 
 connection.connect(error => {

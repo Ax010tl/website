@@ -5,14 +5,16 @@ from random_words import RandomWords        # https://github.com/tomislater/Rand
 
 nicks = RandomWords()
 
+# mysql://b5d3a39da1737e:f62e1752@us-cdbr-east-03.cleardb.com/heroku_e5db01dce17010c?reconnect=true
+
 def connectToDB():
     try:
         connection = mysql.connector.connect(
-            host = 'klbcedmmqp7w17ik.cbetxkdyhwsb.us-east-1.rds.amazonaws.com	',
-            user = 'itzu2phs59lkql5a',
-            password = 'ixbrxjiq61r2u4xi',
+            host = 'us-cdbr-east-03.cleardb.com',
+            user = 'b5d3a39da1737e',
+            password = 'f62e1752',
             port = 3306,
-            database = 'bu6scvlykzf9nj7d'
+            database = 'heroku_e5db01dce17010c'
         )
         print('MySQL Database connection successful')
     except Error as err:
