@@ -6,8 +6,6 @@ const cors = require('cors');
 
 const PORT = process.env.PORT || 5000;
 
-// mysql://b5d3a39da1737e:f62e1752@us-cdbr-east-03.cleardb.com/heroku_e5db01dce17010c?reconnect=true
-
 // Connect to database
 var connection = mysql.createConnection({
     host     : 'us-cdbr-east-03.cleardb.com',
