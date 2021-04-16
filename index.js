@@ -4,14 +4,16 @@ const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
 
-const port = 5000;
+const PORT = process.env.PORT || 5000;
+
+// mysql://b5d3a39da1737e:f62e1752@us-cdbr-east-03.cleardb.com/heroku_e5db01dce17010c?reconnect=true
 
 // Connect to database
 var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'mac_15_db',
-    database : 'skience'
+    host     : 'us-cdbr-east-03.cleardb.com',
+    user     : 'b5d3a39da1737e',
+    password : 'f62e1752',
+    database : 'heroku_e5db01dce17010c'
 });
 
 connection.connect(error => {
@@ -29,7 +31,7 @@ app.use(express.static('static'));
 // CREAR UN NUEVO USUARIO
 app.post('/new', (req, res)=>{
     const data = req.body;
-    connection.query("INSERT INTO `skience`.`users` (`alias`, `age`, `state`, `gender`, `schoolLevel`, `biology`, `chemistry`, `physics`, `engineering`, `tech`, `math`, `score`) VALUES ('"+data.alias+"', "+data.age+", '"+data.state+"', '"+data.gender+"', '"+data.schoolLevel+"', "+data.biology+", "+data.chemistry+", "+data.physics+", "+data.engineering+", "+data.tech+", "+data.math+", "+data.score+");", 
+    connection.query("INSERT INTO `users` (`alias`, `age`, `state`, `gender`, `schoolLevel`, `biology`, `chemistry`, `physics`, `engineering`, `tech`, `math`, `score`) VALUES ('"+data.alias+"', "+data.age+", '"+data.state+"', '"+data.gender+"', '"+data.schoolLevel+"', "+data.biology+", "+data.chemistry+", "+data.physics+", "+data.engineering+", "+data.tech+", "+data.math+", "+data.score+");", 
     (err, results, fields)=>{
         if(err){
             console.log(err);
@@ -91,7 +93,7 @@ app.get('/user', (req, res)=>{
 });
 
 app.get('/views/subjectinterest', (req, res)=>{
-    connection.query("SELECT * FROM subjectinterest", (err, results, fields)=>{
+    connection.query("SELECT * FROM subjectInterest", (err, results, fields)=>{
         if(err) console.log(err);
         else res.send(results);
     });
