@@ -37,7 +37,13 @@ nav{
     position: sticky;
     top: 0;
     z-index: 999;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     box-shadow: 1px 1px 80px 80px #230a4b
+}
+nav #pages{
+    flex: 1
 }
 
 nav ul{
@@ -46,8 +52,10 @@ nav ul{
 }
 
 nav li{
-    margin: 3vh 3vw 3vh 3vw; 
+    padding: 16px; 
     list-style: none;
+    flex: 1;
+    text-align: center
 }
 
 nav li a{
@@ -60,6 +68,8 @@ nav li a{
 
 #hero{
     padding: 10px;
+    flex-shrink: 1;
+    height: 40px
 }
 
 
@@ -119,7 +129,7 @@ section h1{
         top: 0;
         margin: 0;
     }
-    #historia{
+    #historia, #screenshot-gallery{
         padding: 0 !important;
         display: flex;
         align-items: center;
@@ -127,15 +137,15 @@ section h1{
         scroll-behavior: smooth;
         scroll-snap-type: x mandatory;
     }
-    #historia::-webkit-scrollbar{
+    #historia::-webkit-scrollbar, #screenshot-gallery::-webkit-scrollbar{
         display: none;
     }
-    #historia{
+    #historia, #screenshot-gallery{
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
-        #historia>.carrousel-next,
-        #historia>.carrousel-prev{
+        .carrousel-next,
+        .carrousel-prev{
             position: absolute;
             margin-top: auto;
             margin-bottom: auto;
@@ -148,13 +158,13 @@ section h1{
             cursor: pointer;
             /* margin: 10vmin; */
         }
-        #historia>.carrousel-prev{
+        .carrousel-prev{
             left: 10vmin;
         }
-        #historia>.carrousel-next{
+        .carrousel-next{
             right: 10vmin;
         }
-        #historia>div{
+        #historia>div, #screenshot-gallery>div{
             flex-shrink: 0;
             scroll-snap-align: start;
             display: flex;
@@ -250,6 +260,16 @@ section h1{
     margin-right: auto;
     width: 20%;
     padding: 0;
+}
+
+#trailer{}
+
+#trailer video{
+    max-width: 1000px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 #juego{
@@ -366,4 +386,20 @@ section h1{
         margin: 0;
         padding: 0;
     }
+}
+
+#screenshot-gallery {
+    display: flex;
+    /* overflow: scroll; */
+}
+
+#screenshot img{
+    max-height: 70vh;
+}
+
+#unityContainer {
+    width: 950px;
+    height: 760px;
+    margin-left: auto;
+    margin-right: auto;
 }

@@ -161,12 +161,19 @@
                 <canvas id="ages_view-grafica"></canvas>
             </section>
 
+            <section class="graph-cont" id="map">
+                <h2>Mapa</h2>
+                <canvas id="map-grafica"><</canvas>
+            </section>
+
         </div>
     </main>
     
 
     <!-- CHART.JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- CHART.JS MAPS -->
+    <script src="https://unpkg.com/chartjs-chart-geo@3.0.0/build/index.umd.min.js"></script>
     <script>
         function getTableOfContents(){
             let elements = document.querySelectorAll('.graph-cont');
@@ -354,6 +361,13 @@
             const chart = new Chart(document.getElementById('gender_subject-grafica'), config)
         }
 
+        async function obtenerMapa(){
+            const mex = await fetch('https://raw.githubusercontent.com/markmarkoh/datamaps/master/src/js/data/mex.json').then(d=>d.json());
+            
+            // const req = await fetch('/views/gender_subject');
+            // const data = await req.json();
+
+        }
 
         obtenerSubjectInterest();
         obtenerSchoolLevel_subject();

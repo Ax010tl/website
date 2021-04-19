@@ -14,6 +14,10 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <script src="./Build/UnityLoader.js"></script>
+    <script>
+      UnityLoader.instantiate("unityContainer", "./Build/0rb1t.json");
+    </script>
 </head>
 <body>
     <nav>
@@ -53,7 +57,7 @@
             <div>
                 <img class="story-image" src="Historia3.gif" height="300px">
                 <div class="story-text">En el camino voy aprendiendo cómo podemos usar habilidades STEM para encontrar y construir nuestro nuevo hogar. <br> 
-                    Además aprendemos cómo mejorar el mundo real, a partir de los ODS del 2030 de la ONU.
+                    Además aprendemos cómo mejorar el mundo real a partir de los ODS del 2030 de la ONU.
                 </div>
             </div>
             <div>
@@ -121,11 +125,32 @@
     
     <section id="trailer">
         <h1>Tráiler</h1>
-        <div>
+        <!-- http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4
+         -->
+        <video controls width="100%">
+            <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="screenshots">
+            <h2>Capturas de pantalla</h2>
+            <div id="screenshot-gallery">
+                <div id="screenshot">
+                    <img src="1flyy.png">
+                </div>
+                <div id="screenshot">
+                    <img src="2funfact.png">
+                </div>
+                <div id="screenshot">
+                    <img src="3tryAgain.png">
+                </div>
+                <button class="carrousel-next"> &#62; </button>
+                <button class="carrousel-prev"> &#60; </button>
+            </div>
         </div>
     </section>
     <section id="juego">
         <h1>Juego</h1>
+        <div id="unityContainer"></div>
     </section>
     <section id="indicadores">
         <h1>Indicadores</h1>
@@ -177,6 +202,7 @@
     <script src="./launch.js"></script>
     <script>
         let carrousel = new Carrousel(document.querySelector('#historia'))
+        let carrousel2 = new Carrousel(document.querySelector('#screenshot-gallery'))
     </script>
 </body>
 </html>
