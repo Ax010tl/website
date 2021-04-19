@@ -6,18 +6,31 @@ const cors = require('cors');
 
 const PORT = process.env.PORT || 5000;
 
-// Connect to database
-var connection = mysql.createConnection({
+const DB_SETTINGS = {
     host     : 'us-cdbr-east-03.cleardb.com',
     user     : 'b5d3a39da1737e',
     password : 'f62e1752',
-    database : 'heroku_e5db01dce17010c'
-});
+    database : 'heroku_e5db01dce17010c',
+    connectionLimit: 10
+}
 
-connection.connect(error => {
+// Connect to database
+var connection = mysql.createPool(DB_SETTINGS);
+
+connection.on('connection', (conn)=>{
+    console.log('Conexión exitosa a la base de datos');
+    conn.on('error', err => {
+        console.error('Oucrrió un error en la base de datos', err.code);
+    });
+    conn.on('close', err => {
+        console.error('Se cerró la conexión a la base de datos', err)
+    })
+})
+
+/* connection.connect(error => {
     if (error) throw error;
     console.log("Conexión exitosa a la base de datos");
-});
+}); */
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -41,10 +54,10 @@ app.post('/new', (req, res)=>{
 
 // MODIFICAR UN USUARIO EXISTENTE
 app.post('/modify', (req, res)=>{
-    const data = req.body;
-    let {userID, alias, age, state, gender, schoolLevel, biology, chemistry, physics, engineering, tech, math, score} = data;
-
-    connection.query("UPDATE users SET ? WHERE userID="+userID, {alias, age, state, gender, schoolLevel, biology, chemistry, physics, engineering, tech, math, score}, 
+    let data = req.body;
+    let userID = data.userID;
+    delete data.userID;
+    connection.query("UPDATE users SET ? WHERE userID="+userID, data, 
     (err, results, fields)=>{
         if(err){
             console.log(err);
@@ -134,25 +147,22 @@ app.get('/views/gender_subject', (req, res)=>{
 });
 
 app.post('/api/gamedata', (request, response)=>{
-
+    // Insert data
     try{
-        console.log('Request data:', request.body);
-        // Insert data
         const query = connection.query('insert into users set ?', request.body ,(error, results, fields)=>{
-            // If there are no errors, we send a message back to Unity that the data was inserted correctly.
-            if(error) 
+            if(error) {
+                response.json({'message': 'An error ocurred'})
                 console.log(error);
-            else
-                response.json({'message': "Data inserted correctly."})
+            }
+            // If there are no errors, we send a message back to Unity that the data was inserted correctly.
+            else response.json({'message': "Data inserted correctly."})
         });
 
         // Log everything in the server console.
         console.log(query.sql);
-        // connection.end();
     }
     catch(error){
         console.log(error);
-        connection.end();
         response.json(error);
     }
 });

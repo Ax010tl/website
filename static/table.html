@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos</title>
+</head>
+<body>
+    <h1>Text here</h1>
+    <svg id="map" xmlns="http://www.w3.org/2000/svg" height="1000" width="1000" viewbox="12799934.5 12799978 0.1 20">
+    </svg>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/geojson2svg/1.2.6/geojson2svg.min.js" integrity="sha512-oZU1muBgPuRdTuZ3cvnpKtWCTjjD63JgIHwwLdGnbo4ts4P3o+vXoczQz0LaCqWtW4bjrbpi4jKDyT6Eq/4i6Q==" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/parse-svg@0.0.0/index.js"></script>
+    <script>
+        // fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json').then(data=>data.json()).then(data=>{
+        fetch('https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json').then(data=>data.json()).then(data=>{
+            var converter = geojson2svg({
+                viewportSize: {width: 25600000, height: 25600000},
+                /* attributes: {
+                    'style': 'stroke: transparent; fill: red; stroke-width: 0.0001px',
+                }, */
+                r: 0.0001,
+                pointAsCircle: true
+            })
+            var svgStrings = converter.convert(data)
+
+            svgStrings.forEach(estado => {
+                let path = parseSVG(estado).firstChild;
+                document.querySelector('svg').appendChild(path)
+            });
+
+        })
+    </script>
+
+</body>
+</html>
