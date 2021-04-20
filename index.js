@@ -105,14 +105,14 @@ app.get('/user', (req, res)=>{
 });
 
 app.get('/views/subjectinterest', (req, res)=>{
-    connection.query("SELECT * FROM subjectInterest", (err, results, fields)=>{
+    connection.query("SELECT * FROM subjectinterest", (err, results, fields)=>{
         if(err) console.log(err);
         else res.send(results);
     });
 });
 
 app.get('/views/schoolLevel_subject', (req, res)=>{
-    connection.query("SELECT * FROM schoolLevel_subject", (err, results, fields)=>{
+    connection.query("SELECT * FROM schoollevel_subject", (err, results, fields)=>{
         if(err) console.log(err);
         else res.send(results);
     });
@@ -126,7 +126,7 @@ app.get('/views/gender_view', (req, res)=>{
 });
 
 app.get('/views/schoolLevel_view', (req, res)=>{
-    connection.query("SELECT * FROM schoolLevel_view", (err, results, fields)=>{
+    connection.query("SELECT * FROM schoollevel_view", (err, results, fields)=>{
         if(err) console.log(err);
         else res.send(results);
     });
@@ -146,6 +146,19 @@ app.get('/views/gender_subject', (req, res)=>{
     });
 });
 
+app.get('/views/state_schoolLevel', (req, res)=>{
+    connection.query("SELECT * FROM state_schoollevel", (err, results, fields)=>{
+        if(err) console.log(err);
+        else res.send(results);
+    });
+});
+app.get('/views/state_gender', (req, res)=>{
+    connection.query("SELECT * FROM state_gender", (err, results, fields)=>{
+        if(err) console.log(err);
+        else res.send(results);
+    });
+});
+
 app.post('/api/gamedata', (request, response)=>{
     // Insert data
     try{
@@ -153,10 +166,30 @@ app.post('/api/gamedata', (request, response)=>{
             if(error) {
                 response.json({'message': 'An error ocurred'})
                 console.log(error);
+                return;
             }
-            // If there are no errors, we send a message back to Unity that the data was inserted correctly.
-            else response.json({'message': "Data inserted correctly."})
+            let userID = result.insertId;
+        
+            // add school level
+            connection.query('insert into schoolLevel(' + request.body.schoolLevel + ') VALUES (' + userID + ');', (e, r, f)=>{
+                if(e){
+                    response.json({message: 'An error ocurred'});
+                    console.log(error)
+                } else {
+                    // add gender
+                    connection.query('insert into gender(' + request.body.gender + ') VALUES (' + userID + ');', (e, r, f)=>{
+                        if(e){
+                            response.json({message: 'An error ocurred'});
+                            console.log(error);
+                        } else {
+                            // If there are no errors, we send a message back to Unity that the data was inserted correctly.
+                            response.json({'message': "Data inserted correctly."})
+                        }
+                    })
+                }
+            })
         });
+
 
         // Log everything in the server console.
         console.log(query.sql);

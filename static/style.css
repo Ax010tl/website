@@ -10,6 +10,7 @@ html{
     background-attachment: fixed;
     font-family: 'Raleway', sans-serif;
     color: white;
+    width: 100% !important;
 
 }
 
@@ -43,7 +44,7 @@ nav{
     box-shadow: 1px 1px 80px 80px #230a4b
 }
 nav #pages{
-    flex: 1
+    flex: 1;
 }
 
 nav ul{
@@ -52,7 +53,7 @@ nav ul{
 }
 
 nav li{
-    padding: 16px; 
+    padding: 1.2vw; 
     list-style: none;
     flex: 1;
     text-align: center
@@ -110,7 +111,11 @@ section{
     color: white;
 }
 section h1{
-    font-size: 5rem;
+    font-size: 2.4rem;
+}
+
+#equipo{
+    background-color: #230A4B;
 }
 #la-historia{
     position: relative;
@@ -186,7 +191,7 @@ section h1{
     background-color: #230A4B;
     display: flex;
     flex-direction: column;
-    height: 120vh;
+    height: 90vh;
 }
     #como-jugar p {
         width: minmax(20%, 400px);
@@ -318,10 +323,11 @@ section h1{
     font-weight: bold;
 }
 
-#proyecto p {
+.proyecto-contenedor p {
     padding: 0 7vw;
     width: minmax(20%, 400px);
     font-size: 1.2rem;
+    text-align: center;
 }
 
 #movimiento-steam #logo{
@@ -344,13 +350,17 @@ section h1{
     flex-wrap: wrap;
 }
 
-#proyecto #member{
+#equipo #member{
     height: 50vh;
     margin: 0 3vw;
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: center;
+}
+
+#equipo p{
+    text-align: center;
 }
 
 #member img{
@@ -368,11 +378,37 @@ section h1{
     color: white;
 }
 
+#equipo a{
+    color: white;
+}
+
+#proyecto h2{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+#equipo p {
+    padding: 0 7vw;
+    width: minmax(20%, 400px);
+    font-size: 1.2rem;
+}
+
 
 @media screen and (max-width: 800px) {
-
+    html{
+        width: 100%;
+    }
+    section{
+        width: 100%;
+    }
     #hero{
         display: none;
+    }
+
+    nav ul{
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
     }
 
     nav li a{
@@ -403,3 +439,74 @@ section h1{
     margin-left: auto;
     margin-right: auto;
 }
+
+#orbit-img{
+    display: block;
+    width: 20vw;
+    min-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 5vh;
+}
+
+#competencias{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; 
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#competencia{
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    text-align: center;
+    padding: 1vh 1vw  !important;
+    margin: 0 2vw;
+    font-size: medium;
+
+}
+
+footer{
+    text-align: center;
+    padding: 3vh 0;
+}
+
+/* Grow - https://github.com/IanLunn/Hover/blob/master/css/hover.css Hover CSS Library */
+.hvr-grow {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+  }
+  .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+    -webkit-transform: scale(1.15);
+    transform: scale(1.15);
+  }
+
+  /* Float */
+.hvr-float {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+  }
+  .hvr-float:hover, .hvr-float:focus, .hvr-float:active {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }

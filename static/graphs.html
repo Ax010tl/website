@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Graphs</title>
+    <title>Indicadores</title>
     <style>
         html, body{
             font-family: 'Raleway', sans-serif;
@@ -60,11 +60,6 @@
             text-align: center; 
         }
 
-        #toc-link{
-            padding-left: 60vw; 
-            margin-top: 2vh; 
-        }
-
         #toc-link a{
             text-decoration: none;
             color: black;
@@ -94,12 +89,12 @@
             padding-left: 15px;
         }
 
-        canvas{
+        canvas:not(#map-grafica){
             max-width: 40vw; 
             max-height: 30vh;
             margin: 0 auto;
         }
-        canvas.horizontal{
+        canvas.horizontal:not(#map-grafica){
             max-width: 50vw; 
             max-height: 30vh; 
             margin: 0 auto;
@@ -123,11 +118,12 @@
     <aside>
         <h2>Tabla de contenidos</h2>
         <div></div>
+        <br>
+        <div id="toc-link"><a  href="/index.html"> 🚀 Regresar a la página principal </a></div>
         <img id="banner" src="./graphs/indicadores_banner.png">
     </aside>
     <main> 
         <div id="title">
-            <div id="toc-link"><a  href="/index.html"> Regresar </a></div>
             <h1>Indicadores</h1>
         </div>
         <div id="graph-wrapper">
@@ -162,7 +158,7 @@
             </section>
 
             <section class="graph-cont" id="map">
-                <h2>Mapa</h2>
+                <h2>🗺️ Mapa</h2>
                 <canvas id="map-grafica"><</canvas>
             </section>
 
@@ -360,13 +356,59 @@
             }
             const chart = new Chart(document.getElementById('gender_subject-grafica'), config)
         }
-
+        let states;
         async function obtenerMapa(){
-            const mex = await fetch('https://raw.githubusercontent.com/markmarkoh/datamaps/master/src/js/data/mex.json').then(d=>d.json());
-            
-            // const req = await fetch('/views/gender_subject');
-            // const data = await req.json();
+            const req = await fetch('/views/state_gender');
+            const data = await req.json();
 
+            const mx_estados = await fetch('https://raw.githubusercontent.com/markmarkoh/datamaps/master/src/js/data/mex.json').then(d=>d.json());
+            states = mx_estados.features;
+
+            const data_estados = states.map(state=>{
+                let feature = state;
+                let estado_data = data.find(row => (row.state === state.properties.name) || (row.state == 'Ciudad de México' && state.properties.name == 'Distrito Federal') || (row.state == 'Estado de México' && state.properties.name == 'México'));
+                let masculino = estado_data?.Masculino || 0;
+                let femenino = estado_data?.Femenino || 0;
+                let otro = estado_data?.Otro || 0;
+                return {feature, masculino, femenino, otro, total: masculino+femenino+otro}
+            })
+            const config = {
+                type: 'choropleth',
+                data: {
+                    labels: states.map((d) => d.properties.name),
+                    datasets: [
+                        {
+                            label: 'Total',
+                            data: data_estados.map(({feature, total: value})=>({feature, value})),
+                            outline: mx_estados,
+                        },
+                        {
+                            label: 'Masculino',
+                            hidden: true, 
+                            data: data_estados.map(({feature, masculino: value})=>({feature, value})),
+                            outline: mx_estados,
+                        },
+                        {
+                            label: 'Femenino',
+                            hidden: true, 
+                            data: data_estados.map(({feature, femenino: value})=>({feature, value})),
+                            outline: mx_estados,
+                        },
+                        {
+                            label: 'Otro',
+                            hidden: true, 
+                            data: data_estados.map(({feature, otro: value})=>({feature, value})),
+                            outline: mx_estados,
+                        },
+                    ]
+                },
+                options: {
+                    scales: { xy: { projection: 'mercator' } },
+                    showOutline: true,
+                    plugins: { legend: { display: true } },
+                }
+            }
+            const chart = new Chart(document.getElementById("map-grafica"), config);
         }
 
         obtenerSubjectInterest();
@@ -375,6 +417,7 @@
         obtenerSchoolLevel_view();
         obtenerAges_view();
         obtenerGender_subject();
+        obtenerMapa();
     </script>
 
 </body>

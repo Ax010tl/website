@@ -21,23 +21,52 @@
 </head>
 <body>
     <nav>
-        <img id="hero" src="./orbit-logo.png">
+        <a href="#header"><img id="hero" src="./orbit-logo.png"></a>
         <div id="pages">
             <ul>
+                <li><a href="#proyecto">Proyecto</a></li>
                 <li><a href="#la-historia">Historia</a></li>
                 <li><a href="#como-jugar">Cómo Jugar</a></li>
                 <li><a href="#trailer">Tráiler</a></li>
                 <li><a href="#juego">Juego</a></li>
                 <li><a href="#indicadores">Indicadores</a></li>
-                <li><a href="#proyecto">Proyecto</a></li>
+                <li><a href="#equipo">Equipo</a></li>
             </ul>
         </div>
     </nav>
-    <header>
+    <header id="header">
         <!-- <h1> <span>0</span>rb<span>1</span>t</h1> -->
         <img id="title" src="orbit-title.png">
         <p>¿Podrás poner la nave en órbita?</p>
     </header>
+
+    <section id="proyecto">
+        <h1>Sobre el Proyecto</h1>
+        <div id="movimiento-steam" class="proyecto-contenedor">
+            <img src="./logo-steam.png" id="logo">
+            <p>Movimiento STEAM es una asociación sin fines de lucro que está liderando un movimiento regional que impulsa la Educación y el talento STEAM, los empleos del futuro y la innovación, con visión social e incluyente.</p> <br>
+            <p>Para saber más pueden visitar su sitio: <a href="https://movimientosteam.org/" target="_blank">https://movimientosteam.org/</a></p>
+        </div>
+        <div class="proyecto-contenedor">
+            <h2>Problemática</h2>
+            <p>Se estima que el 65% de los empleos que tendrá la generación X aún no existen. Estamos frente a la Cuarta Revolución Industrial-Tecnológica. </p>
+            <br>
+            <p>Este fenómeno se hace más crítico si se analiza bajo la perspectiva de género, pues el 64% de las mujeres ocupan los empleos peor remunerados por falta de competencias en STEM.</p>
+        </div>
+        <div class="proyecto-contenedor">
+            <img src="./orbit-logo.png" id="orbit-img">
+            <p>Es un juego de mini-puzzles, cada nivel es un poco más desafiante que el anterior.</p> <br>
+            <p>0rb1t te permitirá aprender acerca del impacto que ha tenido STEM en el mundo.</p> <br>
+            <p>Además, podrás desarrollar competencias como: </p>
+            <div id="competencias">
+                <p id="competencia" class="hvr-float">Resolución de problemas</p>
+                <p id="competencia" class="hvr-float">Pensamiento crítico</p>
+                <p id="competencia" class="hvr-float">Creatividad</p>
+            </div>
+            <p>¡Acompáñanos en esta aventura!</p>
+        </div>
+    </section>
+
     <section id="la-historia">
         <h1>Historia</h1>
         <div id="historia">
@@ -70,6 +99,7 @@
         </div>
         
     </section>
+
     <section id="como-jugar">
         <h1>Cómo jugar</h1>
         <h2>Pon el cohete en órbita</h2>
@@ -87,27 +117,27 @@
             <p>Existen 6 objetos que dan puntos extra, cada uno representa una disciplina de STEM:</p>
             <div id="powerups">
                 <div id="powerup">
-                    <img id="powerup-image" src=powerups/bio.png>
+                    <img class ="hvr-grow" id="powerup-image" src=powerups/bio.png>
                     <p id="powerup-label">Biología</p>
                 </div>
                 <div id="powerup">
-                    <img id="powerup-image" src=powerups/phys.png>
+                    <img class ="hvr-grow" id="powerup-image" src=powerups/phys.png>
                     <p id="powerup-label">Física</p>
                 </div>
                 <div id="powerup">
-                    <img id="powerup-image" src=powerups/chem.png>
+                    <img class ="hvr-grow" id="powerup-image" src=powerups/chem.png>
                     <p id="powerup-label">Química</p>
                 </div>
                 <div id="powerup">
-                    <img id="powerup-image" src=powerups/tech.png>
+                    <img class ="hvr-grow" id="powerup-image" src=powerups/tech.png>
                     <p id="powerup-label">Tecnología</p>
                 </div>
                 <div id="powerup">
-                    <img id="powerup-image" src=powerups/eng.png>
+                    <img class ="hvr-grow" id="powerup-image" src=powerups/eng.png>
                     <p id="powerup-label">Ingeniería</p>
                 </div>
                 <div id="powerup">
-                    <img id="powerup-image" src=powerups/math.png>
+                    <img class ="hvr-grow" id="powerup-image" src=powerups/math.png>
                     <p id="powerup-label">Matemáticas</p>
                 </div>
             </div>
@@ -120,8 +150,6 @@
             <p> Evita que el cohete colisione con los asteroides, estos restan puntos.</p>
         </div>
     </section>
-    
-
     
     <section id="trailer">
         <h1>Tráiler</h1>
@@ -158,28 +186,9 @@
         <a href="/graphs.html"><button class="button" type="button">Ver</button></a>
 
     </section>
-    <section id="proyecto">
-        <h1>Proyecto</h1>
-        <div id="movimiento-steam" class="proyecto-contenedor">
-            <img src="./logo-steam.png" id="logo">
-            <p>Movimiento STEAM es una asociación sin fines de lucro que está liderando un movimiento regional que impulsa la Educación y el talento STEAM, los empleos del futuro y la innovación, con visión social e incluyente.</p>
-        </div>
+    <section id="equipo">
+        <h1>El Equipo</h1>
         <div class="proyecto-contenedor">
-            <h2>Problemática</h2>
-            <p>Se estima que el 65% de los empleos que tendrá la generación X aún no existen. Estamos frente a la Cuarta Revolución Industrial-Tecnológica. </p>
-            <br>
-            <p>Este fenómeno se hace más crítico si se analiza bajo la perspectiva de género, pues el 64% de las mujeres ocupan los empleos peor remunerados por falta de competencias en STEM.</p>
-        </div>
-        <div class="proyecto-contenedor">
-            <h2>Objetivo</h2>
-            <p>El objetivo del proyecto es desarrollar un videojuego que inspire a las y los jóvenes a estudiar carreras relacionadas con STEM y a desarrollar competencias relacionadas con las mismas.</p>
-        </div>
-        <div class="proyecto-contenedor">
-            <h2>Documentación</h2>
-            <p>Toda la documentación del proyecto se encuentra en <a href="https://github.com/Ax010tl/srsdoc" target="_blank">este repositorio</a>.</p>
-        </div>
-        <div class="proyecto-contenedor">
-            <h2>El Equipo</h2>
             <p>Este proyecto fue desarrollado por 3 estudiantes de 4to semestre de Ingeniería en Tecnologías Computacionales</p>
             <div id="team">
                 <div id="member">
@@ -195,8 +204,16 @@
                     <h3>Lourdes Badillo</h3>
                 </div>
             </div>
+
+            <div class="proyecto-contenedor">
+                <h2>Documentación</h2>
+                <p>Toda la documentación del proyecto se encuentra en <a href="https://github.com/Ax010tl/srsdoc" target="_blank">este repositorio</a>.</p>
+            </div>
+
         </div>
     </section>
+
+    <footer> <p>Hecho con ♡ por The sTEAM</p></footer>
 
     <script src="./carrousel.js"></script>
     <script src="./launch.js"></script>

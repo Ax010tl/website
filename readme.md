@@ -1,5 +1,5 @@
 # Orbit 🚀
-Este repositorio contiene el _backend_ del Juego Orb1t. Incluye:
+Este repositorio contiene el _backend_ del Juego 0rb1t. Incluye:
 - Página web promocional
 - Página para la consulta de datos
 - Dashboard para el análisis de métricas
