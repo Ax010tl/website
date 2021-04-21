@@ -380,25 +380,26 @@
                         {
                             label: 'Total',
                             data: data_estados.map(({feature, total: value})=>({feature, value})),
-                            outline: mx_estados,
+                            outline: mx_estados, 
+                            
                         },
                         {
                             label: 'Masculino',
-                            hidden: true, 
                             data: data_estados.map(({feature, masculino: value})=>({feature, value})),
                             outline: mx_estados,
+                            backgroundColor: 'rgba(255, 159, 64,1)',
                         },
                         {
                             label: 'Femenino',
-                            hidden: true, 
                             data: data_estados.map(({feature, femenino: value})=>({feature, value})),
                             outline: mx_estados,
+                            backgroundColor: 'rgba(255, 206, 86,1)',
                         },
                         {
                             label: 'Otro',
-                            hidden: true, 
                             data: data_estados.map(({feature, otro: value})=>({feature, value})),
                             outline: mx_estados,
+                            backgroundColor: 'rgba(27, 193, 161,1)',
                         },
                     ]
                 },
