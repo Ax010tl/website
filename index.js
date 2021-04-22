@@ -158,6 +158,12 @@ app.get('/views/state_gender', (req, res)=>{
         else res.send(results);
     });
 });
+app.get('/api/highscore', (req, res)=>{
+    connection.query("SELECT MAX(score) FROM users", (err, results, fields)=>{
+        if(err) console.log(err);
+        else res.send(results);
+    });
+});
 
 app.post('/api/gamedata', (request, response)=>{
     // Insert data
@@ -196,7 +202,8 @@ app.post('/api/gamedata', (request, response)=>{
     }
     catch(error){
         console.log(error);
-        response.json(error);
+        // response.json(error);
+        res.end()
     }
 });
 
