@@ -161,7 +161,7 @@ app.get('/views/state_gender', (req, res)=>{
 app.get('/api/highscore', (req, res)=>{
     connection.query("SELECT MAX(score) FROM users", (err, results, fields)=>{
         if(err) console.log(err);
-        else res.send(results[0]["MAX(score)"]);
+        else res.send(results);
     });
 });
 
