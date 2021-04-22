@@ -196,7 +196,8 @@ app.post('/api/gamedata', (request, response)=>{
     }
     catch(error){
         console.log(error);
-        response.json(error);
+        // response.json(error);
+        res.end()
     }
 });
 
