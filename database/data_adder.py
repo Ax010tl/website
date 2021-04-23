@@ -39,13 +39,13 @@ for i in range(300):
     state = states[random.randrange(0, len(states))]
     gender = genders[random.randrange(0,3)]
     schoolLevel = schoolLevels[random.randrange(0, 5)]
-    bio = random.randrange(0,2)
-    chem = random.randrange(0,2)
-    phys = random.randrange(0,2)
-    engi = random.randrange(0,2)
-    tech = random.randrange(0,2)
-    math = random.randrange(0,2)
-    score = random.randrange(0,30)
+    bio = random.randrange(0,3)
+    chem = random.randrange(0,3)
+    phys = random.randrange(0,3)
+    engi = random.randrange(0,3)
+    tech = random.randrange(0,3)
+    math = random.randrange(0,3)
+    score = random.randrange(0,40)
 
     val = (alias, age, state, gender, schoolLevel, bio, chem, phys, engi, tech, math, score)
     cursor.execute(query, val)
