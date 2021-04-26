@@ -39,6 +39,26 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Table structure for table `gender`
+--
+
+DROP TABLE IF EXISTS `gender`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `gender` (
+  `Femenino` int DEFAULT NULL,
+  `Masculino` int DEFAULT NULL,
+  `Otro` int DEFAULT NULL,
+  KEY `fk_gen_f_idx` (`Femenino`),
+  KEY `fk_gen_m_idx` (`Masculino`),
+  KEY `fk_gen_o_idx` (`Otro`),
+  CONSTRAINT `fk_gen_f` FOREIGN KEY (`Femenino`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_gen_m` FOREIGN KEY (`Masculino`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_gen_o` FOREIGN KEY (`Otro`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Temporary view structure for view `gender_subject`
 --
 
@@ -70,6 +90,35 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Table structure for table `schoolLevel`
+--
+
+DROP TABLE IF EXISTS `schoolLevel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `schoolLevel` (
+  `Preescolar` int DEFAULT NULL,
+  `Primaria` int DEFAULT NULL,
+  `Secundaria` int DEFAULT NULL,
+  `Preparatoria` int DEFAULT NULL,
+  `Actualmente no estudio` int DEFAULT NULL,
+  `Otro` int DEFAULT NULL,
+  KEY `fk_sl_pre_idx` (`Preescolar`),
+  KEY `fk_pri_idx` (`Primaria`),
+  KEY `fk_sec_idx` (`Secundaria`),
+  KEY `fk_prepa_idx` (`Preparatoria`),
+  KEY `fk_uni_idx` (`Actualmente no estudio`),
+  KEY `fk_other_idx` (`Otro`),
+  CONSTRAINT `fk_other` FOREIGN KEY (`Otro`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_prepa` FOREIGN KEY (`Preparatoria`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_pri` FOREIGN KEY (`Primaria`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_sec` FOREIGN KEY (`Secundaria`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_sl_pre` FOREIGN KEY (`Preescolar`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_uni` FOREIGN KEY (`Actualmente no estudio`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Temporary view structure for view `schoollevel_subject`
 --
 
@@ -98,6 +147,38 @@ SET @saved_cs_client     = @@character_set_client;
 /*!50001 CREATE VIEW `schoollevel_view` AS SELECT 
  1 AS `schoolLevel`,
  1 AS `count(schoolLevel)`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `state_gender`
+--
+
+DROP TABLE IF EXISTS `state_gender`;
+/*!50001 DROP VIEW IF EXISTS `state_gender`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `state_gender` AS SELECT 
+ 1 AS `state`,
+ 1 AS `Masculino`,
+ 1 AS `Femenino`,
+ 1 AS `Otro`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `state_schoollevel`
+--
+
+DROP TABLE IF EXISTS `state_schoollevel`;
+/*!50001 DROP VIEW IF EXISTS `state_schoollevel`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `state_schoollevel` AS SELECT 
+ 1 AS `state`,
+ 1 AS `Primaria`,
+ 1 AS `Secundaria`,
+ 1 AS `Preparatoria`,
+ 1 AS `Actualmente no estudio`,
+ 1 AS `Otro`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -135,8 +216,60 @@ CREATE TABLE `users` (
   `math` int DEFAULT NULL,
   `score` int DEFAULT NULL,
   PRIMARY KEY (`userID`)
-) ENGINE=InnoDB AUTO_INCREMENT=305 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `addGender` AFTER INSERT ON `users` FOR EACH ROW begin
+			case new.gender
+				when 'Masculino' then
+					insert into gender(Masculino) values(new.userID);
+				when 'Femenino' then
+					insert into gender(Femenino) values(new.userID);
+				when 'Otro' then
+					insert into gender(Otro) values(new.userID);
+			end case;
+        end */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `addSchoolLevel` AFTER INSERT ON `users` FOR EACH ROW begin
+			case new.schoolLevel
+				when 'Primaria' then
+					insert into schoolLevel(Primaria) values(new.userID);
+				when 'Secundaria' then
+					insert into schoolLevel(Secundaria) values(new.userID);
+				when 'Preparatoria' then
+					insert into schoolLevel(Preparatoria) values(new.userID);
+				when 'Actualmente no estudio' then 
+					insert into schoolLevel(`Actualmente no estudio`) values(new.userID);
+				when 'Otro' then
+					insert into schoolLevel(Otro) values(new.userID);
+			end case;
+        end */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Current Database: `skience`
@@ -235,6 +368,42 @@ USE `skience`;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
+-- Final view structure for view `state_gender`
+--
+
+/*!50001 DROP VIEW IF EXISTS `state_gender`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `state_gender` AS select `users`.`state` AS `state`,count(`gender`.`Masculino`) AS `Masculino`,count(`gender`.`Femenino`) AS `Femenino`,count(`gender`.`Otro`) AS `Otro` from (`users` join `gender`) where ((`gender`.`Masculino` = `users`.`userID`) or (`gender`.`Femenino` = `users`.`userID`) or (`gender`.`Otro` = `users`.`userID`)) group by `users`.`state` order by `users`.`state` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `state_schoollevel`
+--
+
+/*!50001 DROP VIEW IF EXISTS `state_schoollevel`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `state_schoollevel` AS select `users`.`state` AS `state`,count(`schoollevel`.`Primaria`) AS `Primaria`,count(`schoollevel`.`Secundaria`) AS `Secundaria`,count(`schoollevel`.`Preparatoria`) AS `Preparatoria`,count(`schoollevel`.`Actualmente no estudio`) AS `Actualmente no estudio`,count(`schoollevel`.`Otro`) AS `Otro` from (`users` join `schoollevel`) where ((`schoollevel`.`Preescolar` = `users`.`userID`) or (`schoollevel`.`Primaria` = `users`.`userID`) or (`schoollevel`.`Secundaria` = `users`.`userID`) or (`schoollevel`.`Preparatoria` = `users`.`userID`) or (`schoollevel`.`Actualmente no estudio` = `users`.`userID`) or (`schoollevel`.`Otro` = `users`.`userID`)) group by `users`.`state` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `subjectinterest`
 --
 
@@ -261,4 +430,4 @@ USE `skience`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-15  0:13:13
+-- Dump completed on 2021-04-20  9:48:54
