@@ -490,6 +490,21 @@ section h1{
 
 }
 
+#objetivos{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; 
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#objetivo{
+    width: 150px;
+    margin: 0 20px;
+}
+
 iframe {
     display: block;
     margin: 0 auto; 
