@@ -188,9 +188,6 @@ app.post('/api/gamedata', (request, response)=>{
             }
         })
     })
-    // Log everything in the server console.
-    console.log(query.sql);
-
 });
 
 app.listen(PORT, ()=>{
