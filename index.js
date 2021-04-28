@@ -176,8 +176,8 @@ app.post('/api/gamedata', (request, response)=>{
         }
         let userID = results.insertId;
 
-        connection.query(`
-            INSERT INTO schoollevel('${request.body.schoolLevel}') VALUES ('${userID}'); INSERT INTO gender('${request.body.gender}') VALUES ('${userID}');`, (e, r, f) => {
+        connection.query(
+            `INSERT INTO schoollevel('${request.body.schoolLevel}') VALUES ('${userID}'); INSERT INTO gender('${request.body.gender}') VALUES ('${userID}');`, (e, r, f) => {
             if(e){
                 response.json({'message': 'An error ocurred'});
                 console.error(e);
